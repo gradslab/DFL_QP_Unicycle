@@ -1,0 +1,6 @@
+[console_scripts]
+dfl_qp_tracking = controllers.dfl_qp_tracking_node:main
+fblqp_controller = controllers.fblqp_controller_node:main
+fblqp_controller_PP = controllers.fblqp_controller_PP_node:main
+std_dfl_tracking = controllers.std_dfl_tracking_node:main
+tfbl_controller = controllers.tfbl_controller_node:main

@@ -1,0 +1,51 @@
+running egg_info
+creating ../../build/controllers/controllers.egg-info
+writing ../../build/controllers/controllers.egg-info/PKG-INFO
+writing dependency_links to ../../build/controllers/controllers.egg-info/dependency_links.txt
+writing entry points to ../../build/controllers/controllers.egg-info/entry_points.txt
+writing requirements to ../../build/controllers/controllers.egg-info/requires.txt
+writing top-level names to ../../build/controllers/controllers.egg-info/top_level.txt
+writing manifest file '../../build/controllers/controllers.egg-info/SOURCES.txt'
+reading manifest file '../../build/controllers/controllers.egg-info/SOURCES.txt'
+writing manifest file '../../build/controllers/controllers.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/labpc1/dflqp_unicycle_ws/build/controllers/build
+creating /home/labpc1/dflqp_unicycle_ws/build/controllers/build/lib
+creating /home/labpc1/dflqp_unicycle_ws/build/controllers/build/lib/controllers
+copying controllers/__init__.py -> /home/labpc1/dflqp_unicycle_ws/build/controllers/build/lib/controllers
+copying controllers/dfl_qp_tracking_node.py -> /home/labpc1/dflqp_unicycle_ws/build/controllers/build/lib/controllers
+copying controllers/fblqp_controller_PP_node.py -> /home/labpc1/dflqp_unicycle_ws/build/controllers/build/lib/controllers
+copying controllers/tfbl_controller_node.py -> /home/labpc1/dflqp_unicycle_ws/build/controllers/build/lib/controllers
+copying controllers/std_dfl_tracking_node.py -> /home/labpc1/dflqp_unicycle_ws/build/controllers/build/lib/controllers
+copying controllers/fblqp_controller_node.py -> /home/labpc1/dflqp_unicycle_ws/build/controllers/build/lib/controllers
+running install
+running install_lib
+creating /home/labpc1/dflqp_unicycle_ws/install/controllers/lib/python3.12/site-packages/controllers
+copying /home/labpc1/dflqp_unicycle_ws/build/controllers/build/lib/controllers/__init__.py -> /home/labpc1/dflqp_unicycle_ws/install/controllers/lib/python3.12/site-packages/controllers
+copying /home/labpc1/dflqp_unicycle_ws/build/controllers/build/lib/controllers/dfl_qp_tracking_node.py -> /home/labpc1/dflqp_unicycle_ws/install/controllers/lib/python3.12/site-packages/controllers
+copying /home/labpc1/dflqp_unicycle_ws/build/controllers/build/lib/controllers/fblqp_controller_PP_node.py -> /home/labpc1/dflqp_unicycle_ws/install/controllers/lib/python3.12/site-packages/controllers
+copying /home/labpc1/dflqp_unicycle_ws/build/controllers/build/lib/controllers/tfbl_controller_node.py -> /home/labpc1/dflqp_unicycle_ws/install/controllers/lib/python3.12/site-packages/controllers
+copying /home/labpc1/dflqp_unicycle_ws/build/controllers/build/lib/controllers/std_dfl_tracking_node.py -> /home/labpc1/dflqp_unicycle_ws/install/controllers/lib/python3.12/site-packages/controllers
+copying /home/labpc1/dflqp_unicycle_ws/build/controllers/build/lib/controllers/fblqp_controller_node.py -> /home/labpc1/dflqp_unicycle_ws/install/controllers/lib/python3.12/site-packages/controllers
+byte-compiling /home/labpc1/dflqp_unicycle_ws/install/controllers/lib/python3.12/site-packages/controllers/__init__.py to __init__.cpython-312.pyc
+byte-compiling /home/labpc1/dflqp_unicycle_ws/install/controllers/lib/python3.12/site-packages/controllers/dfl_qp_tracking_node.py to dfl_qp_tracking_node.cpython-312.pyc
+byte-compiling /home/labpc1/dflqp_unicycle_ws/install/controllers/lib/python3.12/site-packages/controllers/fblqp_controller_PP_node.py to fblqp_controller_PP_node.cpython-312.pyc
+byte-compiling /home/labpc1/dflqp_unicycle_ws/install/controllers/lib/python3.12/site-packages/controllers/tfbl_controller_node.py to tfbl_controller_node.cpython-312.pyc
+byte-compiling /home/labpc1/dflqp_unicycle_ws/install/controllers/lib/python3.12/site-packages/controllers/std_dfl_tracking_node.py to std_dfl_tracking_node.cpython-312.pyc
+byte-compiling /home/labpc1/dflqp_unicycle_ws/install/controllers/lib/python3.12/site-packages/controllers/fblqp_controller_node.py to fblqp_controller_node.cpython-312.pyc
+running install_data
+creating /home/labpc1/dflqp_unicycle_ws/install/controllers/share/ament_index
+creating /home/labpc1/dflqp_unicycle_ws/install/controllers/share/ament_index/resource_index
+creating /home/labpc1/dflqp_unicycle_ws/install/controllers/share/ament_index/resource_index/packages
+copying resource/controllers -> /home/labpc1/dflqp_unicycle_ws/install/controllers/share/ament_index/resource_index/packages
+copying package.xml -> /home/labpc1/dflqp_unicycle_ws/install/controllers/share/controllers
+running install_egg_info
+Copying ../../build/controllers/controllers.egg-info to /home/labpc1/dflqp_unicycle_ws/install/controllers/lib/python3.12/site-packages/controllers-0.0.0-py3.12.egg-info
+running install_scripts
+Installing dfl_qp_tracking script to /home/labpc1/dflqp_unicycle_ws/install/controllers/lib/controllers
+Installing fblqp_controller script to /home/labpc1/dflqp_unicycle_ws/install/controllers/lib/controllers
+Installing fblqp_controller_PP script to /home/labpc1/dflqp_unicycle_ws/install/controllers/lib/controllers
+Installing std_dfl_tracking script to /home/labpc1/dflqp_unicycle_ws/install/controllers/lib/controllers
+Installing tfbl_controller script to /home/labpc1/dflqp_unicycle_ws/install/controllers/lib/controllers
+writing list of installed files to '/home/labpc1/dflqp_unicycle_ws/build/controllers/install.log'

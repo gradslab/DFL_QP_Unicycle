@@ -1,0 +1,68 @@
+<!-- <launch>
+    <let name="urdf_path" 
+                value="$(find-pkg-share my_robot_description)/urdf/my_robot.urdf.xacro" />
+
+    <let name="gazebo_config_path"
+            value="$(find-pkg-share my_robot_bringup)/config/gazebo_bridge.yaml" />
+
+    <let name="rviz_config_path" 
+                value="$(find-pkg-share my_robot_description)/rviz/my_robot.rviz" />
+
+
+    <node pkg="robot_state_publisher" exec="robot_state_publisher">
+        <param name="robot_description" value="$(command 'xacro $(var urdf_path)')" />
+        <param name="publish_frequency" value="100.0"/>
+    </node>
+
+    <include file="$(find-pkg-share ros_gz_sim)/launch/gz_sim.launch.py">
+        <arg name="gz_args" value="empty.sdf -r" />
+    </include>
+
+    <node pkg="ros_gz_sim" exec="create" args="-topic robot_description" />
+
+    <node pkg="ros_gz_bridge" exec="parameter_bridge">
+        <param name="config_file" value="$(var gazebo_config_path)" />
+    </node>
+
+    <node pkg="rviz2" exec="rviz2" output="screen" args="-d $(var rviz_config_path)"/>
+
+</launch> -->
+<launch>
+    <!-- Launch arguments for robot spawn position -->
+    <arg name="x" default="0.0" description="Initial x position of the robot"/>
+    <arg name="y" default="0.0" description="Initial y position of the robot"/>
+    <arg name="z" default="0.1" description="Initial z position of the robot"/>
+    <arg name="roll" default="0.0" description="Initial roll orientation of the robot"/>
+    <arg name="pitch" default="0.0" description="Initial pitch orientation of the robot"/>
+    <arg name="yaw" default="0.0" description="Initial yaw orientation of the robot"/>
+
+    <let name="urdf_path" 
+                value="$(find-pkg-share my_robot_description)/urdf/my_robot.urdf.xacro" />
+    <let name="gazebo_config_path"
+            value="$(find-pkg-share my_robot_bringup)/config/gazebo_bridge.yaml" />
+    <let name="rviz_config_path" 
+                value="$(find-pkg-share my_robot_description)/rviz/my_robot.rviz" />
+
+    <!-- Robot State Publisher -->
+    <node pkg="robot_state_publisher" exec="robot_state_publisher">
+        <param name="robot_description" value="$(command 'xacro $(var urdf_path)')" />
+        <param name="publish_frequency" value="100.0"/>
+    </node>
+
+    <!-- Gazebo Sim -->
+    <include file="$(find-pkg-share ros_gz_sim)/launch/gz_sim.launch.py">
+        <arg name="gz_args" value="empty.sdf -r" />
+    </include>
+
+    <!-- Spawn Robot with Position Arguments -->
+    <node pkg="ros_gz_sim" exec="create" args="-topic robot_description -x $(var x) -y $(var y) -z $(var z) -R $(var roll) -P $(var pitch) -Y $(var yaw)" />
+
+    <!-- Gazebo Bridge -->
+    <node pkg="ros_gz_bridge" exec="parameter_bridge">
+        <param name="config_file" value="$(var gazebo_config_path)" />
+    </node>
+
+    <!-- RViz -->
+    <node pkg="rviz2" exec="rviz2" output="screen" args="-d $(var rviz_config_path)"/>
+
+</launch>
