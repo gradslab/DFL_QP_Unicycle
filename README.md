@@ -7,7 +7,7 @@
 This repository provides the **ROS 2 Jazzy implementation** of the controller proposed in the paper:
 
 > **Hamza Tariq**, Usman Ali, and Adeel Akhtar  
-> **“Simultaneous Tracking and Stabilization of a Non-holonomic Robot: A Lipschitz-Continuous Quadratic-Program-Based Controller”**, 2024.  
+> **“Simultaneous Tracking and Stabilization of a Non-holonomic Robot: A Lipschitz-Continuous Quadratic-Program-Based Controller”**, 2025.  
 
 The **DFL-QP (Unicycle)** controller unifies trajectory tracking and point stabilization for differential-drive robots through a **time-invariant, Lipschitz-continuous quadratic program**.  
 It ensures controller feasibility even at zero velocity, overcoming the singularities of standard DFL.
