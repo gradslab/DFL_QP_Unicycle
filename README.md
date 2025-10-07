@@ -1,5 +1,9 @@
 # DFL-QP Unicycle Controller
 
+## 🎥 Gazebo Simulation Results
+
+
+
 This repository provides the **ROS 2 Jazzy implementation** of the controller proposed in the paper:
 
 > **Hamza Tariq**, Usman Ali, and Adeel Akhtar  
@@ -7,6 +11,31 @@ This repository provides the **ROS 2 Jazzy implementation** of the controller pr
 
 The **DFL-QP (Unicycle)** controller unifies trajectory tracking and point stabilization for differential-drive robots through a **time-invariant, Lipschitz-continuous quadratic program**.  
 It ensures controller feasibility even at zero velocity, overcoming the singularities of standard DFL.
+
+---
+
+Below are the simulation results demonstrating **point stabilization** and **trajectory tracking** for the proposed **DFL-QP controller**, compared against the **standard DFL controller**.
+
+---
+
+### 🟢 Point Stabilization
+<img src="Gazebo_Simulation_Videos/DFL_point_stabilization.gif" width="600"/>
+
+---
+
+### 🔵 Trajectory Tracking Comparison
+
+<table>
+<tr>
+<td align="center"><b>Proposed DFL-QP Controller</b></td>
+<td align="center"><b>Standard DFL Controller</b></td>
+</tr>
+<tr>
+<td><img src="Gazebo_Simulation_Videos/DFL_QP_Tracking.gif" width="400"/></td>
+<td><img src="Gazebo_Simulation_Videos/Standard_DFL_Tracking.gif" width="400"/></td>
+</tr>
+</table>
+
 
 ---
 
