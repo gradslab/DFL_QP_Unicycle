@@ -1,29 +1,22 @@
 # DFL-QP Unicycle Controller
 
-## 🎥 Gazebo Simulation Results
+## 🎥 Gazebo Experiment Results
 
 
 
 This repository provides the **ROS 2 Jazzy implementation** of the controller proposed in the paper:
 
 > **Hamza Tariq**, Usman Ali, and Adeel Akhtar  
-> **“Simultaneous Tracking and Stabilization of a Non-holonomic Robot: A Lipschitz-Continuous Quadratic-Program-Based Controller”**, 2025.  
-
-The **DFL-QP (Unicycle)** controller unifies trajectory tracking and point stabilization for differential-drive robots through a **time-invariant, Lipschitz-continuous quadratic program**.  
-It ensures controller feasibility even at zero velocity, overcoming the singularities of standard DFL.
+> **“Simultaneous Tracking and Stabilization of a Nonholonomic Robot: A Lipschitz Continuous Quadratic Program based Controller”**, 2026.  
 
 ---
 
-Below are the simulation results demonstrating **point stabilization** and **trajectory tracking** for the proposed **DFL-QP controller**, compared against the **standard DFL controller**.
+Below are the simulation results demonstrating **trajectory tracking** for the proposed **DFL-QP controller**, compared against the **standard DFL controller**.
+
 
 ---
 
-### 🟢 Point Stabilization
-<img src="Gazebo_Simulation_Videos/DFL_point_stabilization.gif" width="600"/>
-
----
-
-### 🔵 Trajectory Tracking Comparison
+### 🔵 Trajectory Tracking Comparison on Half Figure-8
 
 <table>
 <tr>
@@ -36,15 +29,6 @@ Below are the simulation results demonstrating **point stabilization** and **tra
 </tr>
 </table>
 
-
----
-
-## 🧠 Key Features
-- Unified control for **tracking + point stabilization**
-- **QP-based**, Lipschitz-continuous formulation
-- Implemented in **ROS 2 Jazzy + Gazebo Harmonic**
-- Includes **standard DFL** controller for comparison
-- Verified on **Ubuntu 24.04 LTS**
 
 ---
 
@@ -85,24 +69,14 @@ Now in a new terminal
 source path_to_cloned_repo/DF_QP_Unicycle/install/setup.bash
 ```
 
-Spawn the robot for point stabilization experiment
+To run trajtory tracking experiment for figure-8 experiment
 ```bash
-ros2 launch my_robot_bringup my_robot_gazebo.launch.xml x:=1.0 y:=0.0 yaw:=1.57079632679
+ros2 launch my_robot_bringup my_robot_gazebo.launch.xml x:=-0.2 y:=0.0 yaw:=3.14159
 ```
 
-Then in a new terminal source the workspace again run the command
+To run our controller
 ```bash
-ros2 run controllers fblqp_controller 0.0 0.0 1.57079632679
-```
-
-To run trajtory tracking experiment
-```bash
-ros2 launch my_robot_bringup my_robot_gazebo.launch.xml x:=-0.25 y:=0.0 yaw:=3.14159
-```
-
-Then in a new terminal source the workspace again run the command
-```bash
-ros2 run controllers fblqp_controller 0.0 0.0 1.57079632679
+ros2 run controllers dfl_qp_tracking
 ```
 Alternatively, if you want to run tracking for tradition DFL method run 
 ```bash
