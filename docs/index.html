@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['\\(','\\)'], ['$', '$']]
+    }
+  };
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SBP Lie Groups</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --muted: #666666;
+      --line: #e6e6e6;
+      --accent: #1f4ed8;
+      --soft: #f7f8fa;
+      --maxw: 1000px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover { text-decoration: underline; }
+
+    .page {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 28px 20px 64px;
+    }
+
+    .topbar {
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,0.96);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(8px);
+    }
+
+    .topbar-inner {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--text);
+    }
+
+    .nav {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 0.96rem;
+    }
+
+    .hero {
+      text-align: center;
+      padding-top: 26px;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.15;
+      margin: 0 0 14px;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 820px;
+      margin: 0 auto 16px;
+    }
+
+    .authors,
+    .affiliations,
+    .note {
+      margin: 10px auto;
+      max-width: 900px;
+      font-size: 1rem;
+    }
+
+    .affiliations,
+    .note {
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .button-row {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 22px 0 28px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--text);
+      background: #fff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+
+    .button:hover {
+      text-decoration: none;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+      border-color: #d4d8df;
+    }
+
+    .teaser {
+      margin: 0 auto 10px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      background: var(--soft);
+      box-shadow: 0 14px 34px rgba(0,0,0,0.05);
+    }
+
+    .teaser img {
+      width: 100%;
+      display: block;
+      height: auto;
+    }
+
+    .teaser-caption {
+      padding: 12px 16px;
+      font-size: 0.95rem;
+      color: var(--muted);
+      text-align: left;
+      border-top: 1px solid var(--line);
+      background: #fff;
+    }
+
+    section {
+      margin-top: 42px;
+      scroll-margin-top: 80px;
+    }
+
+    h2 {
+      font-size: 1.55rem;
+      margin: 0 0 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    p {
+      margin: 0 0 14px;
+    }
+
+    .abstract {
+      font-size: 1.02rem;
+      text-align: justify;
+    }
+
+    .gif-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      align-items: start;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    }
+
+    .card img {
+      width: 100%;
+      display: block;
+      height: auto;
+      background: var(--soft);
+    }
+
+    .card-body {
+      padding: 14px 16px 16px;
+    }
+
+    .card-title {
+      font-weight: 700;
+      margin: 0 0 6px;
+      font-size: 1rem;
+    }
+
+    .card-text {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+    }
+
+    .list {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .list li { margin-bottom: 10px; }
+
+    pre {
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #f8f9fb;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      overflow-x: auto;
+      font-size: 0.94rem;
+      line-height: 1.5;
+    }
+
+    .footer {
+      margin-top: 48px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    @media (max-width: 820px) {
+      .gif-grid,
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">Schrödinger Bridge Over A Compact Connected Lie Group</div>
+      <nav class="nav">
+        <a href="#abstract">Abstract</a>
+        <a href="#animations">Animations</a>
+        <a href="#code">Code</a>
+        <a href="#bibtex">BibTeX</a>
+      </nav>
+    </div>
+  </div>
+
+  <main class="page">
+    <header class="hero">
+      <h1>Schrödinger Bridge Over A Compact Connected Lie Group</h1>
+      <p class="subtitle">
+        A geometric coordinate-free solution for the isotropic Schrödinger bridge problem over Lie groups .
+      </p>
+
+      <div class="authors">
+        <h2>Hamza Mahmood*, Abhishek Halder†, Adeel Akhtar*</h2>
+      </div>
+
+      <div class="affiliations">
+        * Department of Mechanical and Industrial Engineering, New Jersey Institute of Technology, Newark, NJ, †Department of Aerospace Engineering,
+Iowa State University, Ames, IA 
+      </div>
+
+
+      <div class="button-row">
+        <a class="button" href="https://github.com/gradslab/SbpLieGroups">GitHub</a>
+        <a class="button" href="#animations">Animations</a>
+        <a class="button" href="#code">How to Run</a>
+        <a class="button" href="#bibtex">BibTeX</a>
+      </div>
+
+      <figure class="teaser">
+        <img src="media/LongFigure_Test3.jpg" alt="Project teaser image" />
+        <figcaption class="teaser-caption">
+          Snapshots of probability density function on SO(2) taken at five different time instances.
+        </figcaption>
+      </figure>
+    </header>
+
+    <section id="abstract">
+      <h2>Abstract</h2>
+      <p class="abstract">
+        This work studies the Schrödinger bridge problem for the kinematic equation on a compact connected Lie group. The objective is to steer a controlled diffusion between given initial and terminal densities supported over the Lie group while minimizing the control effort. We develop a coordinate-free formulation of this stochastic optimal control problem that respects the underlying geometric structure of the Lie group, thereby avoiding limitations associated with local parameterizations or embeddings in Euclidean spaces. We establish the existence and uniqueness of solution to the corresponding Schrödinger system. Our results are constructive in that they derive a geometric controller that optimally interpolates probability densities supported over the Lie group. To illustrate the results, we provide numerical examples on $\mathsf{SO}(2)$ and $\mathsf{SO}(3)$.
+      </p>
+    </section>
+
+    <section id="animations">
+      <h2>Animations</h2>
+      <div class="gif-grid">
+        <article class="card">
+          <img src="media/anm1.gif" alt="First simulation animation" />
+          <div class="card-body">
+            <p class="card-title">SBP on SO(2)</p>
+            <p class="card-text">
+             <p> The initial PDF has three peaks while the terminal PDF has two peaks. The evolution of the intermediate PDFs illustrates how the three peaks smoothly redistribute to become two under the Schrödinger bridge dynamics on SO(2). </p>
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="media/anm2.gif" alt="Second simulation animation" />
+          <div class="card-body">
+            <p class="card-title">SBP on SO(3)</p>
+            <p class="card-text">
+              <p>
+The above shows the computed \( \rho^{\mathrm{opt}}(\cdot,t) \),
+for \( t \in (0,1) \), supported on \( \|\omega\|_2 \).
+The boundary densities \( \rho_0 \) and \( \rho_1 \) are shown
+in dashed white and dashed red, respectively. The figure also
+illustrates the convergence of the Sinkhorn recursion with
+respect to the Hilbert metric \( d_H \). This shows the smooth evolution of optimally controlled probability density function.
+</p>
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="code">
+      <h2>Code and Reproducibility</h2>
+      <div class="two-col">
+        <div>
+          <p>
+            The full source code is available in the GitHub repository:
+            <a href="https://github.com/gradslab/SbpLieGroups">gradslab/SbpLieGroups</a>.
+          </p>
+          <p>
+            <p>
+After cloning the repository, install the required Python dependencies using
+<code>pip install -r requirements.txt</code>. Each experiment can then be executed
+directly from the command line using Python. For instance,
+<code>python schrodinger_bridge_so2.py</code> runs the SO(2) simulation, while
+<code>python schrodinger_bridge_so3.py</code> runs the SO(3) simulation.
+All generated figures and animation outputs are saved automatically in the
+<code>assets/</code> directory.
+</p>
+          </p>
+        </div>
+        <div>
+          <ul class="list">
+            <h3>Repository Structure</h3>
+
+<pre><code>.
+├── <a href="https://github.com/gradslab/SbpLieGroups/blob/main/Python_SBP_SO2.py">schrodinger_bridge_so2.py</a>
+├── <a href="https://github.com/gradslab/SbpLieGroups/blob/main/Python_SBP_SO3.py">schrodinger_bridge_so3.py</a>
+├── <a href="https://github.com/gradslab/SbpLieGroups/blob/main/requirements.txt">requirements.txt</a>
+├── <a href="https://github.com/gradslab/SbpLieGroups/blob/main/README.md">README.md</a>
+└── <a href="https://github.com/gradslab/SbpLieGroups/tree/main/assets">assets/</a>
+</code></pre>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>How to Run</h2>
+
+
+<pre><code>git clone https://github.com/gradslab/SbpLieGroups.git
+cd SbpLieGroups
+
+# Install required Python packages
+pip install -r requirements.txt
+
+# Run the simulations
+python schrodinger_bridge_so2.py
+python schrodinger_bridge_so3.py
+</code></pre>
+    </section>
+
+    <section id="bibtex">
+      <h2>BibTeX</h2>
+      <pre>@misc{sbp_lie_groups_2026,
+  title        = {Schrödinger Bridge Over A Compact Connected Lie Group},
+  author       = {Hamza Mahmood, Abhishek Halder, Adeel Akhtar},
+  year         = {2026},
+  howpublished = {GitHub repository},
+  note         = {\url{https://github.com/gradslab/SbpLieGroups}}
+}</pre>
+    </section>
+
+    <div class="footer">
+      Contact: <a href="mailto:adeel.akhtar (at) njit.edu">adeel.akhtar (at) njit.edu</a>
+      &nbsp;·&nbsp;
+      Repository: <a href="https://github.com/gradslab/SbpLieGroups">gradslab/SbpLieGroups</a>
+    </div>
+  </main>
+</body>
+</html>
