@@ -9,12 +9,11 @@
     }
   };
 </script>
-
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SBP Lie Groups</title>
+  <title>DFL-QP Unicycle</title>
   <style>
     :root {
       --bg: #ffffff;
@@ -27,7 +26,6 @@
     }
 
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -98,7 +96,7 @@
     .subtitle {
       color: var(--muted);
       font-size: 1.08rem;
-      max-width: 820px;
+      max-width: 850px;
       margin: 0 auto 16px;
     }
 
@@ -108,6 +106,14 @@
       margin: 10px auto;
       max-width: 900px;
       font-size: 1rem;
+    }
+
+    .authors h2 {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin: 0;
+      font-size: 1.15rem;
+      font-weight: 700;
     }
 
     .affiliations,
@@ -179,9 +185,12 @@
       border-bottom: 1px solid var(--line);
     }
 
-    p {
-      margin: 0 0 14px;
+    h3 {
+      margin: 0 0 8px;
+      font-size: 1.08rem;
     }
+
+    p { margin: 0 0 14px; }
 
     .abstract {
       font-size: 1.02rem;
@@ -210,9 +219,7 @@
       background: var(--soft);
     }
 
-    .card-body {
-      padding: 14px 16px 16px;
-    }
+    .card-body { padding: 14px 16px 16px; }
 
     .card-title {
       font-weight: 700;
@@ -239,6 +246,14 @@
 
     .list li { margin-bottom: 10px; }
 
+    .method-box {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px 18px;
+      margin: 16px 0;
+    }
+
     pre {
       margin: 0;
       white-space: pre-wrap;
@@ -250,6 +265,12 @@
       overflow-x: auto;
       font-size: 0.94rem;
       line-height: 1.5;
+    }
+
+    code {
+      background: #f3f4f6;
+      padding: 2px 5px;
+      border-radius: 5px;
     }
 
     .footer {
@@ -277,10 +298,11 @@
 <body>
   <div class="topbar">
     <div class="topbar-inner">
-      <div class="brand">Schrödinger Bridge Over A Compact Connected Lie Group</div>
+      <div class="brand">DFL-QP Unicycle</div>
       <nav class="nav">
         <a href="#abstract">Abstract</a>
-        <a href="#animations">Animations</a>
+        <a href="#method">Method</a>
+        <a href="#results">Results</a>
         <a href="#code">Code</a>
         <a href="#bibtex">BibTeX</a>
       </nav>
@@ -289,32 +311,33 @@
 
   <main class="page">
     <header class="hero">
-      <h1>Schrödinger Bridge Over A Compact Connected Lie Group</h1>
+      <h1>A Relaxed Quadratic-Program-based Framework for Trajectory Tracking of Unicycle Robots with Singularity Avoidance</h1>
       <p class="subtitle">
-        A geometric coordinate-free solution for the isotropic Schrödinger bridge problem over Lie groups .
+        A time-invariant relaxed dynamic-feedback-linearization controller for unicycle robots that tracks trajectories through zero velocity and direction reversal.
       </p>
 
       <div class="authors">
-        <h2>Hamza Mahmood*, Abhishek Halder†, Adeel Akhtar*</h2>
+        <h2>Hamza Tariq, Usman Ali, and Adeel Akhtar</h2>
       </div>
 
       <div class="affiliations">
-        * Department of Mechanical and Industrial Engineering, New Jersey Institute of Technology, Newark, NJ, †Department of Aerospace Engineering,
-Iowa State University, Ames, IA 
+        Hamza Tariq and Adeel Akhtar are with the Department of Mechanical and Industrial Engineering,
+        New Jersey Institute of Technology, Newark, NJ, USA.<br />
+        Usman Ali is with the School of Engineering and Sustainable Development,
+        De Montfort University, Leicester, UK.
       </div>
 
-
       <div class="button-row">
-        <a class="button" href="https://github.com/gradslab/SbpLieGroups">GitHub</a>
-        <a class="button" href="#animations">Animations</a>
+        <a class="button" href="https://github.com/gradslab/DFL_QP_Unicycle">GitHub</a>
+        <a class="button" href="#results">Simulation Results</a>
         <a class="button" href="#code">How to Run</a>
         <a class="button" href="#bibtex">BibTeX</a>
       </div>
 
       <figure class="teaser">
-        <img src="media/LongFigure_Test3.jpg" alt="Project teaser image" />
+        <img src="https://raw.githubusercontent.com/gradslab/DFL_QP_Unicycle/main/Gazebo_Simulation_Videos/DFL_QP_Tracking.gif" alt="DFL-QP TurtleBot3 trajectory tracking animation" />
         <figcaption class="teaser-caption">
-          Snapshots of probability density function on SO(2) taken at five different time instances.
+          ROS 2--Gazebo simulation of the proposed DFL-QP controller on a TurtleBot3 Waffle robot. The controller remains well defined through zero-velocity stop-and-reverse maneuvers.
         </figcaption>
       </figure>
     </header>
@@ -322,36 +345,72 @@ Iowa State University, Ames, IA
     <section id="abstract">
       <h2>Abstract</h2>
       <p class="abstract">
-        This work studies the Schrödinger bridge problem for the kinematic equation on a compact connected Lie group. The objective is to steer a controlled diffusion between given initial and terminal densities supported over the Lie group while minimizing the control effort. We develop a coordinate-free formulation of this stochastic optimal control problem that respects the underlying geometric structure of the Lie group, thereby avoiding limitations associated with local parameterizations or embeddings in Euclidean spaces. We establish the existence and uniqueness of solution to the corresponding Schrödinger system. Our results are constructive in that they derive a geometric controller that optimally interpolates probability densities supported over the Lie group. To illustrate the results, we provide numerical examples on $\mathsf{SO}(2)$ and $\mathsf{SO}(3)$.
+        Dynamic feedback linearization (DFL) is a classical technique for trajectory tracking of unicycle-type mobile robots, but the resulting controller becomes singular when the linear velocity vanishes. This makes standard DFL-based controllers unsuitable for stop-and-reverse maneuvers. This paper proposes a quadratic-programming-based optimal control framework that avoids this singularity while establishing local Lipschitz continuity of the resulting feedback law. The proposed method reformulates the DFL constraints as an equality-constrained QP with a slack variable, ensuring feasibility for all states and reference signals, including zero-velocity configurations. By introducing tunable slack and acceleration-bias terms, the controller avoids singular configurations for a large class of reference trajectories. The approach is validated through ROS 2--Gazebo simulations on a TurtleBot3 Waffle robot.
       </p>
     </section>
 
-    <section id="animations">
-      <h2>Animations</h2>
+    <section id="method">
+      <h2>Method</h2>
+      <p>
+        The standard DFL controller for the dynamically extended unicycle relies on the decoupling matrix
+        \(D(x)\), whose determinant is \(-x_4\). Hence, the controller becomes undefined at zero translational velocity, exactly when a stop-and-reverse maneuver requires the robot to pass through rest.
+      </p>
+
+      <div class="method-box">
+        <p>
+          The proposed controller relaxes the strict DFL equality by introducing a slack variable \(\delta\):
+        </p>
+        <p>
+          \[
+          \begin{aligned}
+          \min_{u,\delta} \quad & \frac{1}{2}u^\top Q u + \frac{1}{2}\delta^\top P\delta + c(x,r)^\top u,\\
+          \text{s.t.} \quad & D(x)u = \eta(x,r) + \delta .
+          \end{aligned}
+          \]
+        </p>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <h3>Key idea</h3>
+          <p>
+            The slack variable keeps the QP feasible even when \(D(x)\) loses rank. A smooth acceleration bias helps the robot escape rest configurations and avoid deadlock while preserving a time-invariant feedback structure.
+          </p>
+        </div>
+        <div>
+          <h3>Main guarantees</h3>
+          <ul class="list">
+            <li>Feasibility of the relaxed QP at zero velocity.</li>
+            <li>Local Lipschitz continuity of the feedback controller.</li>
+            <li>Uniform ultimate boundedness of the tracking error under the stated assumptions.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="results">
+      <h2>Simulation Results</h2>
+      <p>
+        The controller is evaluated in ROS 2--Gazebo using a TurtleBot3 Waffle robot. The experiments compare the proposed DFL-QP controller with a standard DFL baseline on trajectories requiring stop-and-reverse motion.
+      </p>
+
       <div class="gif-grid">
         <article class="card">
-          <img src="media/anm1.gif" alt="First simulation animation" />
+          <img src="https://raw.githubusercontent.com/gradslab/DFL_QP_Unicycle/main/Gazebo_Simulation_Videos/DFL_QP_Tracking.gif" alt="Proposed DFL-QP controller tracking result" />
           <div class="card-body">
-            <p class="card-title">SBP on SO(2)</p>
+            <p class="card-title">Proposed DFL-QP Controller</p>
             <p class="card-text">
-             <p> The initial PDF has three peaks while the terminal PDF has two peaks. The evolution of the intermediate PDFs illustrates how the three peaks smoothly redistribute to become two under the Schrödinger bridge dynamics on SO(2). </p>
+              The relaxed QP controller tracks through the reversal by allowing the linear velocity to cross zero while keeping the feedback law well defined.
             </p>
           </div>
         </article>
 
         <article class="card">
-          <img src="media/anm2.gif" alt="Second simulation animation" />
+          <img src="https://raw.githubusercontent.com/gradslab/DFL_QP_Unicycle/main/Gazebo_Simulation_Videos/Standard_DFL_Tracking.gif" alt="Standard DFL controller tracking result" />
           <div class="card-body">
-            <p class="card-title">SBP on SO(3)</p>
+            <p class="card-title">Standard DFL Baseline</p>
             <p class="card-text">
-              <p>
-The above shows the computed \( \rho^{\mathrm{opt}}(\cdot,t) \),
-for \( t \in (0,1) \), supported on \( \|\omega\|_2 \).
-The boundary densities \( \rho_0 \) and \( \rho_1 \) are shown
-in dashed white and dashed red, respectively. The figure also
-illustrates the convergence of the Sinkhorn recursion with
-respect to the Hilbert metric \( d_H \). This shows the smooth evolution of optimally controlled probability density function.
-</p>
+              The classical DFL controller loses accuracy near zero velocity because the decoupling matrix becomes singular at rest.
             </p>
           </div>
         </article>
@@ -363,32 +422,21 @@ respect to the Hilbert metric \( d_H \). This shows the smooth evolution of opti
       <div class="two-col">
         <div>
           <p>
-            The full source code is available in the GitHub repository:
-            <a href="https://github.com/gradslab/SbpLieGroups">gradslab/SbpLieGroups</a>.
+            The full ROS 2 implementation is available in the GitHub repository:
+            <a href="https://github.com/gradslab/DFL_QP_Unicycle">gradslab/DFL_QP_Unicycle</a>.
           </p>
           <p>
-            <p>
-After cloning the repository, install the required Python dependencies using
-<code>pip install -r requirements.txt</code>. Each experiment can then be executed
-directly from the command line using Python. For instance,
-<code>python schrodinger_bridge_so2.py</code> runs the SO(2) simulation, while
-<code>python schrodinger_bridge_so3.py</code> runs the SO(3) simulation.
-All generated figures and animation outputs are saved automatically in the
-<code>assets/</code> directory.
-</p>
+            The repository provides a ROS 2 Jazzy implementation of the proposed controller and includes Gazebo simulation results comparing the DFL-QP controller with the standard DFL controller.
           </p>
         </div>
         <div>
+          <h3>Recommended environment</h3>
           <ul class="list">
-            <h3>Repository Structure</h3>
-
-<pre><code>.
-├── <a href="https://github.com/gradslab/SbpLieGroups/blob/main/Python_SBP_SO2.py">schrodinger_bridge_so2.py</a>
-├── <a href="https://github.com/gradslab/SbpLieGroups/blob/main/Python_SBP_SO3.py">schrodinger_bridge_so3.py</a>
-├── <a href="https://github.com/gradslab/SbpLieGroups/blob/main/requirements.txt">requirements.txt</a>
-├── <a href="https://github.com/gradslab/SbpLieGroups/blob/main/README.md">README.md</a>
-└── <a href="https://github.com/gradslab/SbpLieGroups/tree/main/assets">assets/</a>
-</code></pre>
+            <li>Ubuntu 24.04 LTS</li>
+            <li>ROS 2 Jazzy Jalisco</li>
+            <li>Python 3.10--3.12</li>
+            <li>CMake 3.16 or newer</li>
+            <li>Gazebo Harmonic</li>
           </ul>
         </div>
       </div>
@@ -396,35 +444,51 @@ All generated figures and animation outputs are saved automatically in the
 
     <section>
       <h2>How to Run</h2>
+<pre><code># Clone the repository
+git clone https://github.com/gradslab/DFL_QP_Unicycle.git
+cd DFL_QP_Unicycle/
 
+# Install system and ROS dependencies
+sudo apt update
+sudo apt install python3-pip python3-numpy python3-scipy \
+                 ros-jazzy-rclpy ros-jazzy-geometry-msgs \
+                 ros-jazzy-std-msgs ros-jazzy-nav-msgs \
+                 ros-jazzy-tf-transformations
 
-<pre><code>git clone https://github.com/gradslab/SbpLieGroups.git
-cd SbpLieGroups
+# Install Python optimization and math libraries
+pip install qpsolvers osqp scipy numpy
 
-# Install required Python packages
-pip install -r requirements.txt
+# Build the ROS 2 workspace
+colcon build
 
-# Run the simulations
-python schrodinger_bridge_so2.py
-python schrodinger_bridge_so3.py
-</code></pre>
+# In a new terminal, source the workspace
+source install/setup.bash
+
+# Launch the Gazebo figure-8 experiment
+ros2 launch my_robot_bringup my_robot_gazebo.launch.xml x:=-0.2 y:=0.0 yaw:=3.14159
+
+# In another terminal, run the proposed controller
+ros2 run controllers dfl_qp_tracking
+
+# To run the standard DFL baseline instead
+ros2 run controllers std_dfl_tracking</code></pre>
     </section>
 
     <section id="bibtex">
       <h2>BibTeX</h2>
-      <pre>@misc{sbp_lie_groups_2026,
-  title        = {Schrödinger Bridge Over A Compact Connected Lie Group},
-  author       = {Hamza Mahmood, Abhishek Halder, Adeel Akhtar},
+      <pre>@misc{tariq2026relaxeddflqp,
+  title        = {A Relaxed Quadratic-Program-based Framework for Trajectory Tracking of Unicycle Robots with Singularity Avoidance},
+  author       = {Hamza Tariq and Usman Ali and Adeel Akhtar},
   year         = {2026},
   howpublished = {GitHub repository},
-  note         = {\url{https://github.com/gradslab/SbpLieGroups}}
+  note         = {\url{https://github.com/gradslab/DFL_QP_Unicycle}}
 }</pre>
     </section>
 
     <div class="footer">
-      Contact: <a href="mailto:adeel.akhtar (at) njit.edu">adeel.akhtar (at) njit.edu</a>
+      Contact: <a href="mailto:adeel.akhtar@njit.edu">adeel.akhtar@njit.edu</a>
       &nbsp;·&nbsp;
-      Repository: <a href="https://github.com/gradslab/SbpLieGroups">gradslab/SbpLieGroups</a>
+      Repository: <a href="https://github.com/gradslab/DFL_QP_Unicycle">gradslab/DFL_QP_Unicycle</a>
     </div>
   </main>
 </body>
